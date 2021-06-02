@@ -261,7 +261,9 @@ class ebsocket_system(object):
             data = utility.pickle_object(event)
             header = utility.get_header(data)
             self.send_raw_to(connection, header+data)
-        except:
+            print(f"send_event_to() -> sending event {event} to socket {connection}")
+        except Exception as e:
+            print(f"send_event_to() -> sending event error : {e}")
             return False
 
     def send_event_to_clients(self, event: ebsocket_event):
